@@ -1,33 +1,13 @@
 require_relative 'card'
 require_relative 'board'
+require_relative 'player'
+
 
 class Game
 
   attr_reader :board
   def initialize(board)
     @board = board
-  end
-
-  def get_move
-    valid = false
-    until valid
-      input = []
-      puts 'Which row?'
-      input << gets.chomp
-      puts 'Which column?'
-      input << gets.chomp
-      valid = valid_move?(input)
-      puts 'Invalid move' unless valid
-    end
-    numberfy_input(input)
-  end
-
-  def numberfy_input(input_pos)
-    input_pos.map(&:to_i)
-  end
-
-  def valid_move?(pos)
-    pos.all? { |el| ('0'...'4').cover?(el) }
   end
 
   def take_turn
@@ -45,8 +25,6 @@ class Game
     end
     sleep(2)
   end
-
-
 
   def play
     @board.populate
